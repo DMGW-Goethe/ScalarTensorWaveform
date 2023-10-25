@@ -78,9 +78,9 @@ class ScalarTensorPhase:
         v = (np.pi * self.M * self.G * f / self.c**3)**(1/3)
 
         first_term = (-15 * self.g2 * self.delta_q * self.msBar**2) / ((9856 * self.nu**3 * v**11) * mp.hyp3f2(-3/2, 7/3, 11/6, 10/3, 17/6, self.msBar**2 / v**6))
-        second_term = (45 * sc.gamma(2/3)**3 * self.delta_q * (-1680 * self.g1 - 1218 * self.g2 + 5 * (1064 * self.nu + 659) * self.delta_q))/(1605632 * (2**(2/3)) * np.pi * self.nu**3 * self.msBar**(5/3))
-        third_term = (self.delta_q * (1680 * self.g1 + 1344 * self.g2 - 5 * (1064 * self.nu + 659) * self.delta_q)) /((86016 * self.nu**3 * v**5) * mp.hyp3f2(-3/2, 4/3, 5/6, 7/3, 11/6, self.msBar**2 / v**6))
-        fourth_term = (5 * np.sqrt(3) * v**3 * (sc.gamma(1/3)**3) * self.delta_q * (7728 * self.g1 + 5376 * self.g2 - 23 * (1064 * self.nu + 659) * self.delta_q))/(30829568 * (2**(1/3)) * np.pi * self.nu**3 * self.msBar**(8/3))
+        second_term = (45 * sc.gamma(2/3)**3 * self.delta_q * (-1680 * self.g1 - 966 * self.g2 + 5 * (1064 * self.nu + 659) * self.delta_q))/(1605632 * (2**(2/3)) * np.pi * self.nu**3 * self.msBar**(5/3))
+        third_term = (self.delta_q * (1680 * self.g1 + 1008 * self.g2 - 5 * (1064 * self.nu + 659) * self.delta_q)) /((86016 * self.nu**3 * v**5) * mp.hyp3f2(-3/2, 4/3, 5/6, 7/3, 11/6, self.msBar**2 / v**6))
+        fourth_term = (5 * np.sqrt(3) * v**3 * (sc.gamma(1/3)**3) * self.delta_q * (7728 * self.g1 + 4368 * self.g2 - 23 * (1064 * self.nu + 659) * self.delta_q))/(30829568 * (2**(1/3)) * np.pi * self.nu**3 * self.msBar**(8/3))
 
         return float((first_term + second_term + third_term + fourth_term) * np.real(np.heaviside((v**3/self.msBar) - 1, 1)))
 
