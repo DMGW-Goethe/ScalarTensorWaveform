@@ -7,11 +7,11 @@ class ScalarTensorPhase:
     def __init__(self,M1,M2,q1,q2,p1,p2,ms,c3):
         '''
         INPUT PARAMETERS
-        :param M1/M2: Neutron star massse
-        :param q1/q2: Scalar charges
-        :param p1/p2: Induced scalar charges
-        :param ms: Scalar mass parameter in units of 1/s
-        :param c3: Scalar cubic self-interaction parameter
+        :param M1/M2: Neutron star massses in kg
+        :param q1/q2: Scalar charges in kg
+        :param p1/p2: Induced scalar charges in kg
+        :param ms: Scalar mass parameter in units of eV
+        :param c3: Scalar cubic self-interaction parameter (dimensionless)
         '''
         self.M1 = M1
         self.M2 = M2
