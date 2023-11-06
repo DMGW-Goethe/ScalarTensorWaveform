@@ -54,7 +54,7 @@ class ScalarTensorPhase:
         v = (np.pi * self.M * self.G * f / self.c**3)**(1/3)
 
         first_term = 5 * self.QBar / (6 * self.nu * self.msBar ** (5 / 2)) * (sc.gammainc(5 / 2, self.msBar / v ** 2) + sc.gammainc(7 / 2, self.msBar / v ** 2) + 2 * sc.gammainc(9 / 2,self.msBar / v ** 2))
-        second_term = v ** 3 * 5 * self.QBar / (6 * self.nu * self.msBar ** 4) * (sc.gammainc(4, self.msBar / v ** 2) + sc.gammainc(5, self.msBar / v ** 2) + 2 * sc.gammainc(6,self.msBar / v ** 2))
+        second_term = - v ** 3 * 5 * self.QBar / (6 * self.nu * self.msBar ** 4) * (sc.gammainc(4, self.msBar / v ** 2) + sc.gammainc(5, self.msBar / v ** 2) + 2 * sc.gammainc(6,self.msBar / v ** 2))
         return float(first_term + second_term)
 
     def Psi_Minus1PN(self, f):
@@ -67,7 +67,6 @@ class ScalarTensorPhase:
         first_term = -1/v**7 * mp.hyp3f2(-3/2, 5/3, 7/6, 8/3, 13/6, self.msBar**2 / v**6)
         second_term = -90 * 2**(1/3) * 3**(1/2) * v**3 * sc.gamma(2/3)**3 / (247 * np.pi * self.msBar**(10/3))
         third_term = 63 * sc.gamma(1/3)**3 / (256 * 2**(1/3) * np.pi * self.msBar**(7/3))
-
         return float(np.real(np.heaviside((v**3/self.msBar) - 1, 1) * (self.delta_q**2 * 5 * self.G/(896 * self.nu**3) * (first_term + second_term + third_term))))
 
     def Psi_0PN_q(self, f):
@@ -77,12 +76,11 @@ class ScalarTensorPhase:
         '''
         v = (np.pi * self.M * self.G * f / self.c**3)**(1/3)
 
-        first_term = (-15 * self.g2 * self.delta_q * self.msBar**2) / ((9856 * self.nu**3 * v**11) * mp.hyp3f2(-3/2, 7/3, 11/6, 10/3, 17/6, self.msBar**2 / v**6))
-        second_term = (45 * sc.gamma(2/3)**3 * self.delta_q * (-1680 * self.g1 - 966 * self.g2 + 5 * (1064 * self.nu + 659) * self.delta_q))/(1605632 * (2**(2/3)) * np.pi * self.nu**3 * self.msBar**(5/3))
-        third_term = (self.delta_q * (1680 * self.g1 + 1008 * self.g2 - 5 * (1064 * self.nu + 659) * self.delta_q)) /((86016 * self.nu**3 * v**5) * mp.hyp3f2(-3/2, 4/3, 5/6, 7/3, 11/6, self.msBar**2 / v**6))
-        fourth_term = (5 * np.sqrt(3) * v**3 * (sc.gamma(1/3)**3) * self.delta_q * (7728 * self.g1 + 4368 * self.g2 - 23 * (1064 * self.nu + 659) * self.delta_q))/(30829568 * (2**(1/3)) * np.pi * self.nu**3 * self.msBar**(8/3))
-
-        return float((first_term + second_term + third_term + fourth_term) * np.real(np.heaviside((v**3/self.msBar) - 1, 1)))
+        first_term = ((-5 * self.g2 * self.delta_q * self.msBar**2) / (9856 * self.nu**3 * v**11)) * mp.hyp3f2(-3/2, 7/3, 11/6, 10/3, 17/6, self.msBar**2 / v**6)
+        second_term = (45 * sc.gamma(2/3)**3 * self.delta_q * (-1680 * self.g1 - 966 * self.g2 + 5 * (1064 * self.nu + 659) * self.delta_q))/(1605632 * 2**(2/3) * np.pi * self.nu**3 * self.msBar**(5/3))
+        third_term = (self.delta_q * (1680 * self.g1 + 1008 * self.g2 - 5 * (1064 * self.nu + 659) * self.delta_q))/(86016 * self.nu**3 * v**5) * mp.hyp3f2(-3/2, 4/3, 5/6, 7/3, 11/6, self.msBar**2 / v**6)
+        fourth_term = (5 * np.sqrt(3) * v**3 * sc.gamma(1/3)**3 * self.delta_q * (7728 * self.g1 + 4368 * self.g2 - 23 * (1064 * self.nu + 659) * self.delta_q))/(30829568 * 2**(1/3) * np.pi * self.nu**3 * self.msBar**(8/3))
+        return float(np.real((first_term + second_term + third_term + fourth_term) * np.heaviside((v**3/self.msBar) - 1, 1)))
 
     def Psi_0PN_p(self, f):
         '''
@@ -91,11 +89,11 @@ class ScalarTensorPhase:
         '''
         v = (np.pi * self.M * self.G * f / self.c**3)**(1/3)
 
-        first_term = -1/v**5 * mp.hyp3f2(-3/2, 4/3, 5/6, 7/3, 11/6, self.msBar**2 / v**6))
+        first_term = -1/v**5 * mp.hyp3f2(-3/2, 4/3, 5/6, 7/3, 11/6, self.msBar**2 / v**6)
         second_term = - (6 * 2**(1/3) * 3**(1/2) * v**3 * sc.gamma(1/3)**3) / (187 * np.pi * self.msBar**(8/3))
-        third_term = (135 * sc.gamma(2/3)**3) / (56 * 2**(1/3) * np.pi * self.msBar**(5/3))
-
+        third_term = (135 * sc.gamma(2/3)**3) / (56 * 2**(2/3) * np.pi * self.msBar**(5/3))
         return float(np.real(np.heaviside((v**3/self.msBar) - 1, 1) * (self.xi_p * 5 / (16 * self.nu**3) * (first_term + second_term + third_term))))
+
 
     def Psi_0PN_c3(self, f):
         '''
@@ -111,7 +109,12 @@ class ScalarTensorPhase:
         second_term = 1/(self.c * self.hbar_SI) * self.xi_c * (25 * self.G * self.M1 * self.M2)/(55296 * np.pi * self.nu**3) * Psi_0PN_c3_2
         return float(np.real(np.heaviside((v**3/self.msBar) - 1, 1) * (first_term + second_term)))
 
+
     def Psi_0PN_l2(self, f):
+        '''
+        :param f: Orbital frequency
+        :return: Phase correction due to l=2 scalar radiation at 0PN (quadrupole)
+        '''
         v = (np.pi * self.M * self.G * f / self.c**3)**(1/3)
 
         first_term = -1/v**5 * mp.hyp3f2(-5/2, 4/3, 5/6, 7/3, 11/6, self.msBar**2 / (4*v**6))
@@ -119,5 +122,10 @@ class ScalarTensorPhase:
         third_term = 405 * sc.gamma(2/3)**3 / (112 * np.pi * self.msBar**(5/3))
         return float(np.real(np.heaviside((v**3/self.msBar) - 1, 1/2) * self.xi_q**2 /(32*self.nu**3) * (first_term + second_term + third_term)))
 
+
     def Psi_ST_total(self, f):
+        '''
+        :param f: Orbital frequency
+        :return: Sum of all scalar contributions to the waveform, up to 0PN (NLO)
+        '''
         return float(self.Psi_E(f) + self.Psi_Minus1PN(f) + self.Psi_0PN_q(f) + self.Psi_0PN_p(f) + self.Psi_0PN_c3(f) + self.Psi_0PN_l2(f))
