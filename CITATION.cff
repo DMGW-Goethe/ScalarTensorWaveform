@@ -1,0 +1,22 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: NLO Waveform in Massive Scalar-Tensor Theory
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Daniel
+    family-names: Schmitt
+    email: dschmitt@itp.uni-frankfurt.de
+    affiliation: Goethe University Frankfurt
+    orcid: 'https://orcid.org/0000-0003-3369-2253'
+  - given-names: Robin Fynn
+    family-names: Diedrichs
+    email: diedrichs@itp.uni-frankfurt.de
+    affiliation: Goethe University Frankfurt
+    orcid: 'https://orcid.org/0009-0007-3998-4608'
+repository-code: 'https://github.com/DMGW-Goethe/ScalarTensorWaveform'
+license: MIT
